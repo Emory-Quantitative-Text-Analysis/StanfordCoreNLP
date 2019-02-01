@@ -66,28 +66,6 @@ import tkinter.messagebox as mb
 import tkinter as tk
 from tkinter import DISABLED
 
-##%%
-#CoreNLPPath = '/Users/chenjian/soc_499/stanfordCoreNLP/stanford-corenlp-full-2018-10-05'
-#Path = '/Users/chenjian/soc_499/stanfordCoreNLP/sample'
-#Output = '/Users/chenjian/soc_499/stanfordCoreNLP/output'
-#
-#is_path = os.path.isdir(Output) 
-#
-#if is_path:
-#    outputPath = Output
-#    mem = 4
-#    mergeFiles = 1
-#    mergeFiles = int(mergeFiles)
-#    if mergeFiles == 1:
-#        getDate = 0
-#        getDate = int(getDate)
-#        if getDate == 1:
-#            separator = '_'
-#            DateFieldLocation = 3
-#            DateFieldLocation = int(DateFieldLocation)
-#            DateFormat = str('mm-dd-yyyy')
-
-
 def check_socket(host, port):
     with closing(socket.socket(socket.AF_INET, socket.SOCK_STREAM)) as sock:
         
@@ -111,21 +89,6 @@ def get_open_port():
 def RunCoreNLP(stanford_core_nlp_path, input_path, output_path, assigned_memory, merge_file_flag,get_date_flag=0,sep='_',date_field_position=3,date_format='mm-dd-yyyy',file_name=''):
     check_socket('localhost',9000)
     port = get_open_port() #find a open port for corenlp
-    
-    #print("PORT: " + str(port))
-
-    #port = random.randint(10000,60000)
-
-    #while not check_socket('localhost',port):
-    #    port = random.randint(10000,60000)
-    #    print("PORT: " + str(port))
-
-    #print ('port:', port)
-
-    #print("")
-    #for i, arg in enumerate(sys.argv):
-    #    print("Argument " + str(i) + ": ",arg)
-    #print("")
     
     stanford_core_nlp_path = os.path.join(stanford_core_nlp_path,'*')
     
@@ -353,16 +316,9 @@ def RunCoreNLP(stanford_core_nlp_path, input_path, output_path, assigned_memory,
         return
     
 #%%
-text_label = \
-"""For information about this program, hit \"Read Me\"
-To run the program, select the Stanford CoreNLP and corpus txt files paths and hit buttons below.
-To exit the program, hit \"Quit\"
-"""
+text_label = """For information about this program, hit \"Read Me\"\nTo run the program, select the Stanford CoreNLP and corpus txt files paths and hit buttons below.\nTo exit the program, hit \"Quit\""""
 
-introduction_main = \
-"""
-reserved for introduction
-"""
+introduction_main = """reserved for introduction"""
 
 #%%
 """
@@ -454,13 +410,7 @@ def test_input_and_run_query():
     
     print(CoreNLPPath, Path, Output,mem,mergeFiles,getDate,separator,DateFieldLocation,DateFormat)
     
-#    try:
     RunCoreNLP(CoreNLPPath, Path, Output,mem,mergeFiles,getDate,separator,DateFieldLocation,DateFormat)
-        
-#    except Exception as e:
-#        print ('Unexpected Error! Check your input and try again.')
-#        print (e.__doc__)
-#        exit()
     return
 
 window = tk.Tk()
@@ -517,13 +467,6 @@ execute_button.place(x=350,y=500)
 intro_button = tk.Button(window, text='Read Me',command=main_msgbox,width=20,height=2)
 intro_button.place(x=150,y=500)
 
-#
-#helper_buttons(window,help_button_x_cord,basic_y_cord,'title','content')
-#helper_buttons(window,help_button_x_cord,basic_y_cord+y_step,'title','content')
-#helper_buttons(window,help_button_x_cord,basic_y_cord+y_step*2,'title','content')
-#helper_buttons(window,help_button_x_cord,basic_y_cord+y_step*3,'title','content')
-#helper_buttons(window,help_button_x_cord,basic_y_cord+y_step*4,'title','content')
-#helper_buttons(window,help_button_x_cord,basic_y_cord+y_step*5,'title','content')
 
 select_input_dir_button=tk.Button(window, width = 22,text='select CoreNLP file directory', command=select_stanford_corenlp_dir)
 select_input_dir_button.place(x=queries_x_cord,y=basic_y_cord)
@@ -612,10 +555,6 @@ if find_date_or_not.get() == 0:
 """
 MAJOR BUTTONS
 """
-
-
-
-#%%
 try:
     
     CoreNLPPath = sys.argv[1]
@@ -658,6 +597,4 @@ except Exception as e:
     print ("\nCommand line arguments are empty, incorrect, or out of order, ERROR: "+e.__doc__)
     print ("\nGraphical User Interface will be activated")   
     window.mainloop()
-    
-#%%
         
